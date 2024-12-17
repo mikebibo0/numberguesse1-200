@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guesser Game</title>
+</head>
+<body>
+    <h1>Pick a number between 1 and 200, and I'll guess it!</h1>
+    <div id="game">
+        <p id="myGuess"></p>
+        <input type="text" id="feedback" placeholder="Is it (h)igh, (l)ow, or (C)orrect?">
+        <button onclick="gameFeedback()">Submit Feedback</button>
+    </div>
+    <script>
+        let low = 1, high = 200, guess;
+
+        function makeGuess() {
+            guess = Math.floor((low + high) / 2);
+            document.getElementById("myGuess").innerText = "My guess is: " + guess;
+        }
+
+        function gameFeedback() {
+            const feedback = document.getElementById("feedback").value.toLowerCase();
+            if (feedback === 'c') {
+                alert("Yay! I guessed it!");
+            } else if (feedback === 'h') {
+                high = guess - 1;
+                makeGuess();
+            } else if (feedback === 'l') {
+                low = guess + 1;
+                makeGuess();
+            } else {
+                alert("Please enter 'h', 'l', or 'c'.");
+            }
+        }
+
+        // Start the game
+        makeGuess();
+    </script>
+</body>
+</html>
